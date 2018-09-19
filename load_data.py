@@ -10,3 +10,4 @@ import pymongo
 
 client = pymongo.MongoClient()
 db = client.friends
+db.users.insert()
