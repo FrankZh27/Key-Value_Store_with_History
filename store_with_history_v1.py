@@ -43,9 +43,14 @@ def put(db, key, value):
     else:
         obj['friends'][value][0]['add'].append(time)
     return
-
     
-def delete(key):
+def delete(db, key):
+    obj = db.user.find_one({"name":key})
+    if obj == None:
+        print('Sorry, there is not such a key.')
+    else:
+        db.user.delete_one({"name":key})
+    return
     
 def delete(key, value):
     
