@@ -64,6 +64,15 @@ def delete(db, key, value):
     return 
     
 def get(key, time):
+    obj = db.user.find_one({"name":key})
+    friends_list = []
+    if obj == None:
+        print('Sorry, key is not found.')
+    else:
+        for friend in obj['friends']:
+            if is_there(time, friend):
+                friends_list.append(friend)
+    return friends_list
     
 def diff(key, time1, time2):
     
