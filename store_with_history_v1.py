@@ -47,13 +47,21 @@ def put(db, key, value):
 def delete(db, key):
     obj = db.user.find_one({"name":key})
     if obj == None:
-        print('Sorry, there is not such a key.')
+        print('Sorry, key is not found.')
     else:
         db.user.delete_one({"name":key})
     return
     
-def delete(key, value):
-    
+def delete(db, key, value):
+    obj = db.user.find_one({"name":key})
+    time = str(datetime.datetime.now())
+    if obj == None:
+        print('Sorry, key is not found.')
+    elif value not in obj['friends']:
+        print('Sorry, value is not found.')
+    else:
+        obj['friends'][value][1]['remove'].append(time)
+    return 
     
 def get(key, time):
     
