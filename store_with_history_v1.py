@@ -35,9 +35,15 @@ def get(db, key):
 
 def put(db, key, value):
     obj = db.user.find_one({"name":key})
-    time = str()
+    time = str(datetime.datetime.now())
     if obj == None:
-        db.user.insert_one({"name":key, "friend":{value:[{add:}]}})
+        db.user.insert_one({"name":key, "friends":{value:[{"add":[time]}, {"remove":[]}]}})
+    elif value not in obj['friends']:
+        obj['friends'].add({value:[{"add":[time]},{"remove":[]}]})
+    else:
+        obj['friends'][value][0]['add'].append(time)
+    return
+
     
 def delete(key):
     
