@@ -10,4 +10,4 @@ import pymongo
 
 client = pymongo.MongoClient()
 db = client.friends
-db.users.insert()
+db.users.insert_one({"name":"A","friends":{"B":[{"add":["0","3"]},{"remove":["1","4"]}],"D":[{"add":["1","3"]},{"remove":["2", "4"]}]}})
